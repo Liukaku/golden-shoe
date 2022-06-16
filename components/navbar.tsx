@@ -1,23 +1,31 @@
 import React from "react";
 
-export const Navbar = ({ blok }: any) => {
+interface Blok {
+  blok: NavBlok;
+}
+
+interface NavBlok {
+  component: String;
+  NavOptions: Array<NavOptions>;
+}
+
+interface NavOptions {
+  Title: String;
+  Component: String;
+  Options: Array<any>;
+  _uid: String | any;
+}
+
+export const Navbar = ({ blok }: Blok) => {
   console.log(blok);
-  const options: Array<String> = [
-    "Sale",
-    "New In",
-    "Men",
-    "Women",
-    "Kid",
-    "Brands",
-  ];
 
   return (
     <div className="bg-gray-900 h-12 w-screen flex">
-      {options.map((title: String) => {
+      {blok.NavOptions.map((navOption: NavOptions) => {
         return (
-          <div className="text-white">
-            <p>{title}</p>
-          </div>
+          <button className="text-white" key={navOption._uid}>
+            {navOption.Title}
+          </button>
         );
       })}
     </div>
