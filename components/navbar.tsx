@@ -16,6 +16,10 @@ interface NavOptions {
   _uid: String | any;
 }
 
+const toggleNav = (e: React.MouseEvent<HTMLElement>, tile: String) => {
+  e.preventDefault();
+};
+
 export const Navbar = ({ blok }: Blok) => {
   console.log(blok);
 
@@ -23,7 +27,13 @@ export const Navbar = ({ blok }: Blok) => {
     <div className="bg-gray-900 h-12 w-screen flex">
       {blok.NavOptions.map((navOption: NavOptions) => {
         return (
-          <button className="text-white" key={navOption._uid}>
+          <button
+            className="text-white mx-5"
+            onClick={(e) => {
+              toggleNav(e, navOption.Title);
+            }}
+            key={navOption._uid}
+          >
             {navOption.Title}
           </button>
         );

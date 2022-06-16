@@ -1,11 +1,22 @@
 import Head from "next/head";
-
+import CTX from "../components/util/store";
+import { useState } from "react";
 // The Storyblok Client & hook
 import Storyblok, { useStoryblok } from "../lib/storyblok";
 import DynamicComponent from "../components/dynamic-component";
 
+interface ContextState {
+  display: Boolean;
+  option: String;
+}
+
 // eslint-disable-next-line no-unused-vars
-export default function Home({ story, preview }) {
+export default function Home({ story, preview }: any) {
+  const [menuContent, toggleMenu] = useState<ContextState>({
+    display: false,
+    option: "",
+  });
+
   const enableBridge = true; // load the storyblok bridge everywhere
   // const enableBridge = preview; // enable bridge only in preview mode
   story = useStoryblok(story, enableBridge);
@@ -13,15 +24,17 @@ export default function Home({ story, preview }) {
     typeof window !== "undefined" && window.location !== window.parent.location;
 
   return (
-    <div className="">
-      <Head>
-        <title>Golden Shoe</title>
-        <meta name="description" content="The UKs favourite shoe retailer" />
-        <link rel="icon" href="/favicon.png" />
-      </Head>
+    <CTX.Provider value={[menuContent, toggleMenu]}>
+      <div className="">
+        <Head>
+          <title>Golden Shoe</title>
+          <meta name="description" content="The UKs favourite shoe retailer" />
+          <link rel="icon" href="/favicon.png" />
+        </Head>
 
-      <DynamicComponent blok={story.content} />
-    </div>
+        <DynamicComponent blok={story.content} />
+      </div>
+    </CTX.Provider>
   );
 }
 
