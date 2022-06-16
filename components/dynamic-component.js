@@ -1,10 +1,12 @@
 import React from "react";
 import Page from "./page";
 import NavBar from "./navbar";
+import Feature from "./feature";
 
 // resolve Storyblok components to Next.js components
 const Components = {
   page: Page,
+  feature: Feature,
   NavBar: NavBar,
 };
 

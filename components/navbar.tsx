@@ -12,7 +12,6 @@ export const Navbar = ({ blok }: Blok) => {
     display: false,
     option: 0,
   });
-  console.log(blok);
 
   const wrapperRef = useRef(null);
 
