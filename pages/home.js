@@ -15,7 +15,8 @@ export default function Home({ story, preview }) {
   return (
     <div className="">
       <Head>
-        <title>Create Next App</title>
+        <title>Golden Shoe</title>
+        <meta name="description" content="The UKs favourite shoe retailer" />
         <link rel="icon" href="/favicon.png" />
       </Head>
 
