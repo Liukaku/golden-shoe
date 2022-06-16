@@ -29,3 +29,8 @@ export type ListObj = {
   type: String;
   text: String;
 };
+
+export type HeroImageObj = {
+  filename: string;
+  name: string;
+};

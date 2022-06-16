@@ -2,12 +2,14 @@ import React from "react";
 import Page from "./page";
 import NavBar from "./navbar";
 import Feature from "./feature";
+import TripleFeature from "./tripleFeature";
 
 // resolve Storyblok components to Next.js components
 const Components = {
   page: Page,
   feature: Feature,
   NavBar: NavBar,
+  TripleFeature: TripleFeature,
 };
 
 const DynamicComponent = ({ blok }) => {

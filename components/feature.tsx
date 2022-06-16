@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { HeroImageObj } from "./interfaces";
 
 interface FeatureBlok {
   blok: HeroBlok;
@@ -7,10 +8,6 @@ interface FeatureBlok {
 
 interface HeroBlok {
   HeroImage: HeroImageObj;
-}
-
-interface HeroImageObj {
-  filename: string;
 }
 
 const Feature = ({ blok }: FeatureBlok) => {
