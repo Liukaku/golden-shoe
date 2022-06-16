@@ -4,10 +4,11 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        tripleImg: "39rem",
+        tripleImg: "49rem",
       },
       width: {
         feature: "98vw",
+        31: "31%",
       },
     },
   },

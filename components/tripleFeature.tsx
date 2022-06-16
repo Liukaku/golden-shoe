@@ -28,13 +28,13 @@ const TripleFeature = ({ blok }: FeatureBlok) => {
               onMouseLeave={() => {
                 updateOver(null);
               }}
-              className={`relative w-4/12 hover:cursor-pointer ${
+              className={`relative w-31 hover:cursor-pointer ${
                 n === 2 ? `mx-3` : ``
               }`}
             >
               <Image src={blok[feature].filename} layout="fill" />
               <h1
-                className={`absolute text-center w-full bottom-0 robotoBlack  bg-white duration-150 ease-in-out ${
+                className={`absolute text-center w-full bottom-0 robotoBlack  bg-white duration-150 ease-in-out text-xl ${
                   hoverVal === n ? `underline` : ``
                 }`}
               >

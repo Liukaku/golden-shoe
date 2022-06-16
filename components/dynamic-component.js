@@ -3,10 +3,12 @@ import Page from "./page";
 import NavBar from "./navbar";
 import Feature from "./feature";
 import TripleFeature from "./tripleFeature";
+import CallToAction from "./callToAction";
 
 // resolve Storyblok components to Next.js components
 const Components = {
   page: Page,
+  CallToAction: CallToAction,
   feature: Feature,
   NavBar: NavBar,
   TripleFeature: TripleFeature,

@@ -34,3 +34,17 @@ export type HeroImageObj = {
   filename: string;
   name: string;
 };
+
+export type Actions = {
+  MailingList: string;
+  Returns: Array<TitleStr>;
+  TripleBox: Array<TitleStr>;
+};
+
+export type CallToActionProps = {
+  blok: Array<TitleStr>;
+};
+
+export type TitleStr = {
+  Title: string;
+};
