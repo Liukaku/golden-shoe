@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ContextState } from "./interfaces";
+import CTX from "./util/store";
 
 interface Blok {
   blok: NavBlok;
@@ -16,12 +18,17 @@ interface NavOptions {
   _uid: String | any;
 }
 
-const toggleNav = (e: React.MouseEvent<HTMLElement>, tile: String) => {
-  e.preventDefault();
-};
-
 export const Navbar = ({ blok }: Blok) => {
+  const [menuContent, toggleMenu] = useContext<ContextState>(CTX);
   console.log(blok);
+
+  const toggleNav = (e: React.MouseEvent<HTMLElement>, title: String) => {
+    e.preventDefault();
+    toggleMenu({
+      display: true,
+      option: title,
+    });
+  };
 
   return (
     <div className="bg-gray-900 h-12 w-screen flex">
