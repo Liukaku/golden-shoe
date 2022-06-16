@@ -6,6 +6,9 @@ module.exports = {
       height: {
         tripleImg: "39rem",
       },
+      width: {
+        feature: "98vw",
+      },
     },
   },
   variants: {

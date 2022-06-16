@@ -16,12 +16,10 @@ const TripleFeature = ({ blok }: FeatureBlok) => {
   const ignore = ["_editable", "_uid", "component"];
   const [hoverVal, updateOver] = useState<number | null>(null);
 
-  console.log(blok);
   return (
     <div className="w-screen flex h-tripleImg justify-between">
       {Object.keys(blok).map((feature: string, n: number) => {
         if (!ignore.includes(feature)) {
-          console.log(n);
           return (
             <div
               onMouseEnter={() => {
