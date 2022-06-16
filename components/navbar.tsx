@@ -19,7 +19,7 @@ interface NavOptions {
 }
 
 export const Navbar = ({ blok }: Blok) => {
-  const [menuContent, toggleMenu] = useContext<ContextState>(CTX);
+  const [menuContent, toggleMenu] = useContext<ContextState | null>(CTX);
   console.log(blok);
 
   const toggleNav = (e: React.MouseEvent<HTMLElement>, title: String) => {
@@ -35,7 +35,7 @@ export const Navbar = ({ blok }: Blok) => {
       {blok.NavOptions.map((navOption: NavOptions) => {
         return (
           <button
-            className="text-white mx-5"
+            className="robotoMedium text-white mx-5"
             onClick={(e) => {
               toggleNav(e, navOption.Title);
             }}
