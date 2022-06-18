@@ -5,7 +5,6 @@ import Storyblok, { useStoryblok } from "../../lib/storyblok";
 
 export const MensHome = ({ story, preview }: any) => {
   console.log(story);
-  console.log(preview);
   const enableBridge = true; // load the storyblok bridge everywhere
   // const enableBridge = preview; // enable bridge only in preview mode
   story = useStoryblok(story, enableBridge);
