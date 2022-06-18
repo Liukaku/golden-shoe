@@ -20,10 +20,10 @@ export const MensHome = ({ story, preview }: any) => {
   );
 };
 
-export async function getStaticProps({ params, preview = false }) {
+export async function getStaticProps({ params, preview = false }: any) {
   let slug = params.slug ? params.slug.join("/") : "home";
 
-  let sbParams = {
+  let sbParams: any = {
     version: "draft", // or "published"
     resolve_relations: ["featured-posts.posts", "selected-posts.posts"],
   };
@@ -47,7 +47,7 @@ export async function getStaticProps({ params, preview = false }) {
 export async function getStaticPaths() {
   let { data } = await Storyblok.get("cdn/links/");
 
-  let paths = [];
+  let paths: Array<any> = [];
   Object.keys(data.links).forEach((linkKey) => {
     if (data.links[linkKey].is_folder) {
       return;
