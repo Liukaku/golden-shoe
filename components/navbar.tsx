@@ -65,12 +65,12 @@ export const Navbar = ({ blok }: Blok) => {
         })}
       </div>
       <div
-        className={`w-screen bg-gray-700 absolute duration-150 ease-in-out ${
+        className={`w-screen z-10 bg-gray-700 absolute duration-150 ease-in-out ${
           menuContent.display ? `opacity-100` : `opacity-0`
         }`}
         ref={wrapperRef}
       >
-        <div className="w-10/12 mx-auto flex">
+        <div className="w-10/12 mx-auto flex ">
           {blok.NavOptions[menuContent.option].Options.map(
             (option: NavDropdown) => {
               return (
