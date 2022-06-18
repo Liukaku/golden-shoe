@@ -1,7 +1,9 @@
 // Import the functions you need from the SDKs you need
 
 import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
 
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -9,19 +11,23 @@ import { initializeApp } from "firebase/app";
 // Your web app's Firebase configuration
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API,
+  apiKey: "AIzaSyDsQV9igb21BHx9HcHdYgz6srnNlbJdgUQ",
 
-  authDomain: process.env.AUTHDOMAIN,
+  authDomain: "golden-shoe-aa08b.firebaseapp.com",
 
-  projectId: process.env.PROJECTID,
+  projectId: "golden-shoe-aa08b",
 
-  storageBucket: process.env.STORAGEBUCKET,
+  storageBucket: "golden-shoe-aa08b.appspot.com",
 
-  messagingSenderId: process.env.MESSAGINGSENDERID,
+  messagingSenderId: "750790441572",
 
-  appId: process.env.APID,
+  appId: "1:750790441572:web:6323e8ac8ccbad218cfd71",
 };
 
 // Initialize Firebase
 
-export const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+
+export const db = getFirestore(app);
+
+export const auth = getAuth(app);
