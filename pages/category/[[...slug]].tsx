@@ -22,7 +22,6 @@ export const MensHome = ({ story, preview }: any) => {
 
 export async function getStaticPaths() {
   let sbParams = {
-    version: "draft",
     starts_with: "category",
     resolve_relations: ["featured-posts.posts", "selected-posts.posts"],
     language: "locale",
