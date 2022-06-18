@@ -3,11 +3,16 @@ import { CallToActionProps, TitleStr } from "../interfaces";
 
 const Returns = (props: CallToActionProps) => {
   console.log(props);
+  const styleArr = [``, `robotoBlack`, `underline`];
   return (
-    <div>
-      <h1 className="w-full text-center">
-        {props.blok.map((title: TitleStr) => {
-          return `${title.Title.toUpperCase()} `;
+    <div className="bg-green-300">
+      <h1 className="w-full text-center my-3 py-3">
+        {props.blok.map((title: TitleStr, n: number) => {
+          return (
+            <span
+              className={`text-2xl ${styleArr[n]}`}
+            >{`${title.Title.toUpperCase()} `}</span>
+          );
         })}
       </h1>
     </div>

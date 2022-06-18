@@ -16,7 +16,7 @@ const Feature = ({ blok }: FeatureBlok) => {
   //   className={`bg-cover h-72 w-screen`}
   // />
   return (
-    <div className="w-screen h-96 relative">
+    <div className="w-screen h-96 relative my-5">
       <Image src={blok.HeroImage.filename} layout="fill" />
     </div>
   );
