@@ -127,7 +127,7 @@ const ProductUpload = () => {
                     name=""
                     id={`size${size}`}
                     placeholder="0"
-                    value={sizeState[size]}
+                    value={sizeState[size as unknown as keyof SizesObj]}
                     className="w-6/12 border border-black"
                     onChange={(e) => {
                       updateSizes({ ...sizeState, [size]: e.target.value });
