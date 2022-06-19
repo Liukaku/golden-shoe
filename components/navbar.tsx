@@ -66,7 +66,7 @@ export const Navbar = ({ blok }: Blok) => {
       </div>
       <div
         className={`w-screen z-10 bg-gray-700 absolute duration-150 ease-in-out ${
-          menuContent.display ? `opacity-100` : `opacity-0`
+          menuContent.display ? `opacity-100` : `opacity-0 hidden`
         }`}
         ref={wrapperRef}
       >

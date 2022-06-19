@@ -1,10 +1,16 @@
 import Head from "next/head";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DynamicComponent from "../../components/dynamic-component";
 import Storyblok, { useStoryblok } from "../../lib/storyblok";
+import CTX from "../../components/util/ctx";
 
 export const AdminPage = ({ story, preview }: any) => {
-  console.log(story);
+  const [loginAuth, updateAuth] = useState({ accessToken: "" });
+
+  useEffect(() => {
+    console.log(loginAuth);
+  }, [loginAuth]);
+
   const enableBridge = true; // load the storyblok bridge everywhere
   // const enableBridge = preview; // enable bridge only in preview mode
   story = useStoryblok(story, enableBridge);
@@ -15,7 +21,9 @@ export const AdminPage = ({ story, preview }: any) => {
         <meta name="description" content="The UKs favourite shoe retailer" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <DynamicComponent blok={story.content} />
+      <CTX.Provider value={[loginAuth, updateAuth]}>
+        <DynamicComponent blok={story.content} />
+      </CTX.Provider>
     </div>
   );
 };
