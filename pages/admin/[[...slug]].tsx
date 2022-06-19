@@ -7,6 +7,7 @@ import CTX from "../../components/util/ctx";
 export const AdminPage = ({ story, preview }: any) => {
   const [loginAuth, updateAuth] = useState({ accessToken: "" });
 
+  console.log(story);
   useEffect(() => {
     console.log(loginAuth);
   }, [loginAuth]);
@@ -30,7 +31,6 @@ export const AdminPage = ({ story, preview }: any) => {
 
 export async function getStaticProps({ params, preview = false }: any) {
   let slug = params.slug ? params.slug.join("/") : "/";
-  console.log(slug + "a");
 
   let sbParams: any = {
     version: "draft", // or "published"
@@ -43,7 +43,6 @@ export async function getStaticProps({ params, preview = false }: any) {
   }
 
   let { data } = await Storyblok.get(`cdn/stories/admin/${slug}`, sbParams);
-  console.log(data.story);
 
   return {
     props: {
@@ -66,7 +65,6 @@ export async function getStaticPaths() {
     // get array for slug because of catch all
     const slug = data.links[linkKey].slug;
     let splittedSlug = slug.split("/");
-    console.log(splittedSlug);
     if (splittedSlug.includes("admin")) {
       splittedSlug.shift();
       paths.push({ params: { slug: splittedSlug } });
