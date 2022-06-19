@@ -11,17 +11,17 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 // Your web app's Firebase configuration
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDsQV9igb21BHx9HcHdYgz6srnNlbJdgUQ",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API,
 
-  authDomain: "golden-shoe-aa08b.firebaseapp.com",
+  authDomain: process.env.NEXT_PUBLIC_AUTHDOMAIN,
 
-  projectId: "golden-shoe-aa08b",
+  projectId: process.env.NEXT_PUBLIC_PROJECTID,
 
-  storageBucket: "golden-shoe-aa08b.appspot.com",
+  storageBucket: process.env.NEXT_PUBLIC_STORAGEBUCKET,
 
-  messagingSenderId: "750790441572",
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGINGSENDERID,
 
-  appId: "1:750790441572:web:6323e8ac8ccbad218cfd71",
+  appId: process.env.NEXT_PUBLIC_APID,
 };
 
 // Initialize Firebase

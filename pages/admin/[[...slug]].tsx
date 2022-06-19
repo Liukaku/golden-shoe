@@ -1,9 +1,9 @@
 import Head from "next/head";
 import React from "react";
-import DynamicComponent from "../components/dynamic-component";
-import Storyblok, { useStoryblok } from "../lib/storyblok";
+import DynamicComponent from "../../components/dynamic-component";
+import Storyblok, { useStoryblok } from "../../lib/storyblok";
 
-export const Home = ({ story, preview }: any) => {
+export const AdminPage = ({ story, preview }: any) => {
   console.log(story);
   const enableBridge = true; // load the storyblok bridge everywhere
   // const enableBridge = preview; // enable bridge only in preview mode
@@ -11,7 +11,7 @@ export const Home = ({ story, preview }: any) => {
   return (
     <div>
       <Head>
-        <title>Golden Shoe Footwear</title>
+        <title>Mens Footwear</title>
         <meta name="description" content="The UKs favourite shoe retailer" />
         <link rel="icon" href="/favicon.png" />
       </Head>
@@ -21,7 +21,8 @@ export const Home = ({ story, preview }: any) => {
 };
 
 export async function getStaticProps({ params, preview = false }: any) {
-  let slug = params.slug ? params.slug.join("/") : "home";
+  let slug = params.slug ? params.slug.join("/") : "/";
+  console.log(slug + "a");
 
   let sbParams: any = {
     version: "draft", // or "published"
@@ -33,12 +34,12 @@ export async function getStaticProps({ params, preview = false }: any) {
     sbParams.cv = Date.now();
   }
 
-  let { data } = await Storyblok.get(`cdn/stories/${slug}`, sbParams);
+  let { data } = await Storyblok.get(`cdn/stories/admin/${slug}`, sbParams);
+  console.log(data.story);
 
-  console.log(data);
   return {
     props: {
-      story: data ? data.story : false,
+      story: data.story ? data.story : null,
       preview,
     },
     revalidate: 3600, // revalidate every hour
@@ -57,8 +58,9 @@ export async function getStaticPaths() {
     // get array for slug because of catch all
     const slug = data.links[linkKey].slug;
     let splittedSlug = slug.split("/");
-    if (slug === "home") splittedSlug = false;
-    if (!slug.includes("admin")) {
+    console.log(splittedSlug);
+    if (splittedSlug.includes("admin")) {
+      splittedSlug.shift();
       paths.push({ params: { slug: splittedSlug } });
     }
   });
@@ -69,4 +71,4 @@ export async function getStaticPaths() {
   };
 }
 
-export default Home;
+export default AdminPage;
