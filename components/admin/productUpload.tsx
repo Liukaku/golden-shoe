@@ -1,5 +1,7 @@
 import Image from "next/image";
-import React, { useRef, useState } from "react";
+import Router from "next/router";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import CTX from "../util/ctx";
 
 interface SizesObj {
   0: number;
@@ -19,6 +21,12 @@ interface SizesObj {
 }
 
 const ProductUpload = () => {
+  const [loginAuth, updateAuth] = useContext(CTX);
+  useEffect(() => {
+    if (!loginAuth.accessToken) {
+      Router.push("/admin/login");
+    }
+  }, []);
   const [imageArr, updateImgArr] = useState<Array<string>>([]);
 
   const [sizeState, updateSizes] = useState<SizesObj>({
@@ -38,6 +46,22 @@ const ProductUpload = () => {
     "13": 0,
   });
   const fileUpload = useRef<HTMLInputElement>(null);
+  const titleRef = useRef<HTMLInputElement>(null);
+  const [tagsRef, updateTags] = useState<string>("");
+
+  const imagePreview = () => {
+    let fileObj = [];
+    let fileArray = [];
+    if (fileUpload.current) {
+      fileObj.push(fileUpload.current.files);
+      if (fileObj[0] !== null) {
+        for (let i = 0; i < fileObj[0].length; i++) {
+          fileArray.push(URL.createObjectURL(fileObj[0][i]));
+        }
+        updateImgArr(fileArray);
+      }
+    }
+  };
 
   const uploadMultipleFiles = async (e: any) => {
     e.preventDefault();
@@ -45,45 +69,58 @@ const ProductUpload = () => {
       let fileObj = [];
       let fileArray = [];
       const formData = new FormData();
-      if (fileUpload.current !== null) {
+      if (fileUpload.current) {
         fileObj.push(fileUpload.current.files);
-        if (fileObj[0] !== null) {
+        if (fileObj[0]) {
           for (let i = 0; i < fileObj[0].length; i++) {
             fileArray.push(URL.createObjectURL(fileObj[0][i]));
             formData.append("image", fileObj[0][i], fileObj[0][i].name);
           }
-        }
-        console.log(fileObj[0]);
-        console.log(fileArray);
-        updateImgArr(fileArray);
 
-        const postData = await fetch(
-          "http://localhost:5001/golden-shoe-aa08b/europe-west2/api/newproduct",
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
-        const data = await postData.json();
-        return data;
+          console.log(fileArray);
+
+          const postData = await fetch(
+            "http://localhost:5001/golden-shoe-aa08b/europe-west2/api/newproduct",
+            {
+              method: "POST",
+              body: formData,
+            }
+          );
+          const data = await postData.json();
+          return data;
+        }
       }
     };
-    const createProducts = async () => {
-      const currentSizes = sizeState;
-      const products = { sizes: currentSizes, images: [] };
-      const postData = await fetch(
-        "http://localhost:5001/golden-shoe-aa08b/europe-west2/api/createproduct",
-        {
-          method: "POST",
-          body: JSON.stringify(products),
-        }
-      );
-      const response = await postData.json();
-      return response;
+    const createProducts = async (imagesArr: Array<string>) => {
+      if (titleRef.current && tagsRef) {
+        console.log(imagesArr);
+        const currentSizes = sizeState;
+        const products = {
+          sizes: currentSizes,
+          imageURL: imagesArr,
+          title: titleRef.current.value,
+          tags: tagsRef.split(","),
+        };
+        const postData = await fetch(
+          "http://localhost:5001/golden-shoe-aa08b/europe-west2/api/createproduct",
+          {
+            method: "POST",
+            body: JSON.stringify(products),
+          }
+        );
+        const response = await postData.json();
+        return response;
+      }
     };
-    createProducts()
+    uploadImages()
       .then((res) => {
-        console.log(res);
+        createProducts(res.message)
+          .then((createRes) => {
+            console.log(createRes);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -100,6 +137,7 @@ const ProductUpload = () => {
         >
           <label htmlFor="productName">Product Name: </label>
           <input
+            ref={titleRef}
             required
             type="text"
             name=""
@@ -113,9 +151,23 @@ const ProductUpload = () => {
             type="text"
             name=""
             id="Product Tags"
+            value={tagsRef}
+            onChange={(e) => {
+              updateTags(e.target.value);
+            }}
             placeholder="mens, nike, "
             className="w-full border border-black"
           />
+          {tagsRef ? (
+            <div className="w-full flex flex-wrap">
+              <h1 className="w-full">Current tags:</h1>
+              {tagsRef.split(",").map((tag: string) => {
+                return <p className="mx-5">{tag}</p>;
+              })}
+            </div>
+          ) : (
+            ""
+          )}
           <div className="flex flex-wrap">
             <h1 className="w-full text-center">Product Size Quantities:</h1>
             {Object.keys(sizeState).map((size: string) => {
@@ -140,6 +192,9 @@ const ProductUpload = () => {
           <div className="w-full overflow-hidden">
             <input
               ref={fileUpload}
+              onChange={() => {
+                imagePreview();
+              }}
               required
               multiple
               type="file"
