@@ -47,6 +47,7 @@ const ProductUpload = () => {
   });
   const fileUpload = useRef<HTMLInputElement>(null);
   const titleRef = useRef<HTMLInputElement>(null);
+  const priceRef = useRef<HTMLInputElement>(null);
   const [tagsRef, updateTags] = useState<string>("");
 
   const imagePreview = () => {
@@ -92,12 +93,13 @@ const ProductUpload = () => {
       }
     };
     const createProducts = async (imagesArr: Array<string>) => {
-      if (titleRef.current && tagsRef) {
+      if (titleRef.current && tagsRef && priceRef.current) {
         console.log(imagesArr);
         const currentSizes = sizeState;
         const products = {
           sizes: currentSizes,
           imageURL: imagesArr,
+          price: priceRef.current.value,
           title: titleRef.current.value,
           tags: tagsRef.split(","),
         };
@@ -142,6 +144,16 @@ const ProductUpload = () => {
             type="text"
             name=""
             id="productName"
+            placeholder="Product Name"
+            className="w-full border border-black"
+          />
+          <label htmlFor="productPrice">Product Price: </label>
+          <input
+            ref={priceRef}
+            required
+            type="text"
+            name=""
+            id="productPrice"
             placeholder="Product Name"
             className="w-full border border-black"
           />

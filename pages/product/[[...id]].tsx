@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import DynamicComponent from "../../components/dynamic-component";
 import Storyblok, { useStoryblok } from "../../lib/storyblok";
@@ -5,6 +6,9 @@ import Storyblok, { useStoryblok } from "../../lib/storyblok";
 const index = () => {
   console.log(Storyblok);
   const [story, updateStory] = useState<any>(null);
+  const router = useRouter();
+  const { pid } = router.query;
+
   useEffect(() => {
     const getData = async () => {
       let preview = false;
@@ -27,6 +31,26 @@ const index = () => {
     };
     getData().then((res) => {
       updateStory(res);
+      const urlArr = document.URL.split("/");
+      console.log(urlArr[urlArr.length - 1]);
+      const productId = { productID: urlArr[urlArr.length - 1] };
+      fetch(
+        `http://localhost:5001/golden-shoe-aa08b/europe-west2/api/getProducts?id=${
+          urlArr[urlArr.length - 1]
+        }`,
+        {
+          method: "GET",
+        }
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
   }, []);
   return <div>{story ? <DynamicComponent blok={story.content} /> : ""}</div>;

@@ -6,6 +6,7 @@ import TripleFeature from "./tripleFeature";
 import CallToAction from "./callToAction";
 import Login from "./admin/login";
 import ProductUpload from "./admin/productUpload";
+import CategoryPage from "./CategoryPage";
 
 // resolve Storyblok components to Next.js components
 const Components = {
@@ -16,6 +17,7 @@ const Components = {
   TripleFeature: TripleFeature,
   Login: Login,
   ProductUpload: ProductUpload,
+  CategoryPage: CategoryPage,
 };
 
 const DynamicComponent = ({ blok }) => {
