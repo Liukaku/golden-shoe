@@ -7,13 +7,13 @@ const MailingList = (props: TitleStr) => {
 
   useEffect(() => {
     if (displayModal) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflowY = "hidden";
     } else {
-      document.body.style.overflow = "visible";
+      document.body.style.overflowY = "visible";
     }
 
     return () => {
-      document.body.style.overflow = "visible";
+      document.body.style.overflowY = "visible";
     };
   }, [displayModal]);
 

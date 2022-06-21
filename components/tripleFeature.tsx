@@ -17,7 +17,7 @@ const TripleFeature = ({ blok }: FeatureBlok) => {
   const [hoverVal, updateOver] = useState<number | null>(null);
 
   return (
-    <div className="w-screen flex h-tripleImg justify-between my-5">
+    <div className="w-screen flex md:h-tripleImg h-72 justify-between my-5">
       {Object.keys(blok).map((feature: string, n: number) => {
         if (!ignore.includes(feature)) {
           return (
@@ -28,13 +28,13 @@ const TripleFeature = ({ blok }: FeatureBlok) => {
               onMouseLeave={() => {
                 updateOver(null);
               }}
-              className={`relative w-31 hover:cursor-pointer ${
+              className={`relative md:w-31 w-36 hover:cursor-pointer ${
                 n === 2 ? `mx-3` : ``
               }`}
             >
               <Image src={blok[feature].filename} layout="fill" />
               <h1
-                className={`absolute text-center w-full bottom-0 robotoBlack  bg-white duration-150 ease-in-out text-xl ${
+                className={`absolute text-center w-full bottom-0 robotoBlack  bg-white duration-150 ease-in-out md:text-xl text-sm ${
                   hoverVal === n ? `underline` : ``
                 }`}
               >
