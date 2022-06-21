@@ -93,6 +93,11 @@ export const Navbar = ({ blok }: Blok) => {
             );
           })}
         </div>
+        <div className="hidden md:inline-flex lg:ml-48 md:ml-20 w-4/12 justify-end">
+          <button className="text-white">
+            <Link href={"/customer-services/"}>Customer Services</Link>
+          </button>
+        </div>
         <div className="md:hidden flex w-3/6 justify-end">
           <button
             onClick={() => {
@@ -163,17 +168,6 @@ export const Navbar = ({ blok }: Blok) => {
         ""
       )}
 
-      {/* 
-                <div className="w-full border border-black">
-            <button className="w-full border border-black bg-zinc-200 relative inline-flex text-left px-5 py-2">
-              {section.toUpperCase()}{" "}
-              <span className="w-5 h-4 inline-block ml-auto">
-                {svgMin(section)}
-              </span>
-            </button>
-            <div className="h-10 w-full"></div>
-          </div>
-           */}
       {mobileState && mobileSelected && !navPar ? (
         <div className="absolute z-50 h-full bg-white w-full">
           <button
@@ -233,7 +227,7 @@ export const Navbar = ({ blok }: Blok) => {
         ""
       )}
       <div
-        className={`w-screen z-10 bg-gray-700 absolute duration-150 ease-in-out ${
+        className={`w-screen z-10 bg-zinc-300 absolute duration-150 ease-in-out ${
           menuContent.display ? `opacity-100` : `opacity-0 hidden`
         }`}
         ref={wrapperRef}
@@ -242,7 +236,7 @@ export const Navbar = ({ blok }: Blok) => {
           {blok.NavOptions[menuContent.option].Options.map(
             (option: NavDropdown) => {
               return (
-                <ul className="text-white w-44 my-5 ">
+                <ul className="text-black w-44 my-5 ">
                   {option.List.content[0].content.map(
                     (listOp: ListObj, k: number) => {
                       return (
