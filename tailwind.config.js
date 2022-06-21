@@ -5,9 +5,11 @@ module.exports = {
     extend: {
       height: {
         tripleImg: "49rem",
+        productImg: "34rem",
       },
       width: {
         feature: "98vw",
+        productImg: "34rem",
         31: "31%",
       },
     },

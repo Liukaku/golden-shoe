@@ -10,6 +10,7 @@ import CategoryPage from "./CategoryPage";
 import CustomerServices from "./CustomerServices";
 import HelpBackground from "./HelpBackground";
 import TextBox from "./TextBox";
+import ProductDetails from "./ProductDetails";
 
 // resolve Storyblok components to Next.js components
 const Components = {
@@ -24,6 +25,7 @@ const Components = {
   CustomerServiceOptions: CustomerServices,
   HelpBackground: HelpBackground,
   TextBox: TextBox,
+  ProductDetails: ProductDetails,
 };
 
 const DynamicComponent = ({ blok }) => {

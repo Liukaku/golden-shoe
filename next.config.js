@@ -1,6 +1,10 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["img.storyblok.com", "a.storyblok.com"],
+    domains: [
+      "img.storyblok.com",
+      "a.storyblok.com",
+      "firebasestorage.googleapis.com",
+    ],
   },
 };
