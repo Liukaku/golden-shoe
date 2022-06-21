@@ -39,6 +39,10 @@ a {
   text-decoration: none;
 }
 
+.hiddenBg {
+  background-color: rgba(70, 75, 80, 0.75);
+}
+
 * {
   box-sizing: border-box;
 }
