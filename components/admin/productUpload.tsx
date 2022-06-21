@@ -28,7 +28,7 @@ const ProductUpload = () => {
     }
   }, []);
   const [imageArr, updateImgArr] = useState<Array<string>>([]);
-
+  const [uploadStatus, updateStatus] = useState<string>("");
   const [sizeState, updateSizes] = useState<SizesObj>({
     "0": 0,
     "1": 0,
@@ -45,10 +45,14 @@ const ProductUpload = () => {
     "12": 0,
     "13": 0,
   });
+  const [prodGend, updateGender] = useState<number>(0);
   const fileUpload = useRef<HTMLInputElement>(null);
   const titleRef = useRef<HTMLInputElement>(null);
+  const brandRef = useRef<HTMLInputElement>(null);
   const priceRef = useRef<HTMLInputElement>(null);
   const [tagsRef, updateTags] = useState<string>("");
+
+  const productGender = ["Men", "Women", "Kids"];
 
   const imagePreview = () => {
     let fileObj = [];
@@ -67,6 +71,7 @@ const ProductUpload = () => {
   const uploadMultipleFiles = async (e: any) => {
     e.preventDefault();
     const uploadImages = async () => {
+      updateStatus("Uploading Photos");
       let fileObj = [];
       let fileArray = [];
       const formData = new FormData();
@@ -93,15 +98,19 @@ const ProductUpload = () => {
       }
     };
     const createProducts = async (imagesArr: Array<string>) => {
-      if (titleRef.current && tagsRef && priceRef.current) {
+      updateStatus("Creating Product");
+      if (titleRef.current && tagsRef && priceRef.current && brandRef.current) {
         console.log(imagesArr);
         const currentSizes = sizeState;
         const products = {
           sizes: currentSizes,
           imageURL: imagesArr,
+          gender: productGender[prodGend],
           price: priceRef.current.value,
           title: titleRef.current.value,
+          brand: brandRef.current.value,
           tags: tagsRef.split(","),
+          dateCreated: new Date().getTime(),
         };
         const postData = await fetch(
           "http://localhost:5001/golden-shoe-aa08b/europe-west2/api/createproduct",
@@ -119,6 +128,7 @@ const ProductUpload = () => {
         createProducts(res.message)
           .then((createRes) => {
             console.log(createRes);
+            updateStatus("Uploading Complete");
           })
           .catch((err) => {
             console.log(err);
@@ -129,6 +139,10 @@ const ProductUpload = () => {
       });
   };
 
+  const updateGenderState = (e: React.FormEvent<HTMLUListElement>) => {
+    const target = e.target as HTMLInputElement;
+    updateGender(productGender.indexOf(target.id));
+  };
   return (
     <div>
       <div className="w-3/12 mx-auto">
@@ -157,17 +171,54 @@ const ProductUpload = () => {
             placeholder="Product Name"
             className="w-full border border-black"
           />
-          <label htmlFor="productName">Product Tags: </label>
+          <p>Product Category: </p>
+          <ul
+            onChange={(e) => {
+              updateGenderState(e);
+            }}
+          >
+            {productGender.map((option: string, n: number) => {
+              return (
+                <li className="w-20 justify-between">
+                  <input
+                    key={n}
+                    required
+                    type="radio"
+                    name="gender"
+                    id={option}
+                    value={tagsRef}
+                    onChange={(e) => {
+                      updateTags(e.target.value);
+                    }}
+                    placeholder=""
+                    className=""
+                  />
+                  <label htmlFor={option}>{option}</label>
+                </li>
+              );
+            })}
+          </ul>
+          <label htmlFor="productBrand">Product Brand: </label>
+          <input
+            required
+            type="text"
+            name="productBrand"
+            id="ProductTags"
+            ref={brandRef}
+            placeholder="Nike"
+            className="w-full border border-black"
+          />
+          <label htmlFor="ProductTags">Product Tags: </label>
           <input
             required
             type="text"
             name=""
-            id="Product Tags"
+            id="ProductTags"
             value={tagsRef}
             onChange={(e) => {
               updateTags(e.target.value);
             }}
-            placeholder="mens, nike, "
+            placeholder="hightop, running shoes, "
             className="w-full border border-black"
           />
           {tagsRef ? (
@@ -224,6 +275,7 @@ const ProductUpload = () => {
               Submit
             </button>
           </div>
+          <div>{uploadStatus !== "" ? <p>{uploadStatus}</p> : ""}</div>
         </form>
       </div>
       {!imageArr ? (
