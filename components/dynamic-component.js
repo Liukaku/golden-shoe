@@ -7,6 +7,7 @@ import CallToAction from "./callToAction";
 import Login from "./admin/login";
 import ProductUpload from "./admin/productUpload";
 import CategoryPage from "./CategoryPage";
+import CustomerServices from "./CustomerServices";
 
 // resolve Storyblok components to Next.js components
 const Components = {
@@ -18,6 +19,7 @@ const Components = {
   Login: Login,
   ProductUpload: ProductUpload,
   CategoryPage: CategoryPage,
+  CustomerServiceOptions: CustomerServices,
 };
 
 const DynamicComponent = ({ blok }) => {
