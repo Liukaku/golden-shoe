@@ -15,8 +15,17 @@ export const Navbar = ({ blok }: Blok) => {
     option: 0,
   });
 
+  //this decides if the mobile nav bar is open
   const [mobileState, updateMobile] = useState<boolean>(false);
-  const [mobileNavOpt, updateMobileOption] = useState<number>(0);
+
+  //this controls if a sub section is selected
+  const [mobileSelected, selectMobile] = useState<boolean>(false);
+
+  //this controls which nav option was selected
+  const [mobileNavOpt, updateMobileOption] = useState<number | null>(null);
+
+  //this decides if the parent or sub menu is shown
+  const [navPar, updateNavPar] = useState<boolean>(true);
   const wrapperRef = useRef(null);
 
   function useOutsideAlerter(ref: any) {
@@ -47,6 +56,15 @@ export const Navbar = ({ blok }: Blok) => {
     });
   };
 
+  const toggleMobileNav = () => {
+    updateMobile(!mobileState);
+    if (mobileSelected) {
+      selectMobile(false);
+      updateMobileOption(null);
+      updateNavPar(true);
+    }
+  };
+
   return (
     <section>
       <div className="bg-zinc-900 h-12 w-screen flex">
@@ -75,7 +93,7 @@ export const Navbar = ({ blok }: Blok) => {
         <div className="md:hidden flex w-3/6 justify-end">
           <button
             onClick={() => {
-              updateMobile(!mobileState);
+              toggleMobileNav();
             }}
             className="mt-2"
             aria-label="Open navigation"
@@ -110,9 +128,7 @@ export const Navbar = ({ blok }: Blok) => {
           </button>
         </div>
       </div>
-      {!mobileState ? (
-        ""
-      ) : (
+      {mobileState && navPar ? (
         <div className="w-screen absolute z-50 h-full bg-white">
           {blok.NavOptions.map((navOption: NavOptions, n: number) => {
             return (
@@ -123,7 +139,9 @@ export const Navbar = ({ blok }: Blok) => {
                     : ``
                 }`}
                 onClick={(e) => {
-                  toggleNav(e, n);
+                  selectMobile(true);
+                  updateMobileOption(n);
+                  updateNavPar(false);
                 }}
                 key={navOption._uid}
               >
@@ -132,6 +150,59 @@ export const Navbar = ({ blok }: Blok) => {
             );
           })}
         </div>
+      ) : (
+        ""
+      )}
+
+      {/* 
+                <div className="w-full border border-black">
+            <button className="w-full border border-black bg-zinc-200 relative inline-flex text-left px-5 py-2">
+              {section.toUpperCase()}{" "}
+              <span className="w-5 h-4 inline-block ml-auto">
+                {svgMin(section)}
+              </span>
+            </button>
+            <div className="h-10 w-full"></div>
+          </div>
+           */}
+      {mobileState && mobileSelected && !navPar ? (
+        <div>
+          <button
+            className={`robotoMedium text-black py-5 border-b border-zinc-300 w-full duration-100 ease-in-out`}
+            onClick={(e) => {
+              selectMobile(true);
+              updateMobileOption(null);
+            }}
+          >
+            Back
+          </button>
+          {blok.NavOptions[menuContent.option].Options.map(
+            (option: NavDropdown) => {
+              return option.List.content[0].content.map(
+                (listOp: ListObj, k, number) => {
+                  // console.log(
+                  //   option.List.content[0].content[0].content[0].content[0].text
+                  // );
+                  if (k !== 0) {
+                    return (
+                      <div className="w-full border border-black">
+                        <button className="w-full border border-black bg-zinc-200 relative inline-flex text-left px-5 py-2">
+                          {"test"}
+                          <span className="w-5 h-4 inline-block ml-auto">
+                            {"a"}
+                          </span>
+                        </button>
+                        <div className="h-10 w-full"></div>
+                      </div>
+                    );
+                  }
+                }
+              );
+            }
+          )}
+        </div>
+      ) : (
+        ""
       )}
       <div
         className={`w-screen z-10 bg-gray-700 absolute duration-150 ease-in-out ${
