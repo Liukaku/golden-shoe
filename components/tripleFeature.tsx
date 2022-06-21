@@ -17,7 +17,7 @@ const TripleFeature = ({ blok }: FeatureBlok) => {
   const [hoverVal, updateOver] = useState<number | null>(null);
 
   return (
-    <div className="w-screen flex md:h-tripleImg h-72 justify-between my-5">
+    <div className="w-screen flex md:h-tripleImg h-64 justify-between my-5">
       {Object.keys(blok).map((feature: string, n: number) => {
         if (!ignore.includes(feature)) {
           return (

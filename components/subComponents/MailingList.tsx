@@ -31,8 +31,8 @@ const MailingList = (props: TitleStr) => {
         ""
       ) : (
         <div className="absolute inset-0 w-full h-full bg-black z-50 hiddenBg">
-          <div className="w-3/12 px-10 py-3 bg-blue-200 mx-auto mt-56">
-            <div className="w-11/12 mx-auto justify-end text-right">
+          <div className="md:w-3/12 w-11/12 px-10 py-3 bg-blue-200 mx-auto mt-56">
+            <div className="md:w-11/12 w-full mx-auto justify-end text-right">
               <button
                 className="h-4 w-4 fixed"
                 aria-label="Close"

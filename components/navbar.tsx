@@ -152,6 +152,12 @@ export const Navbar = ({ blok }: Blok) => {
               </button>
             );
           })}
+          <button
+            className={`robotoMedium text-black py-5 border-b border-zinc-300 w-full duration-100 ease-in-out`}
+            onClick={(e) => {}}
+          >
+            <Link href={`/customer-services`}>Customer Services</Link>
+          </button>
         </div>
       ) : (
         ""
