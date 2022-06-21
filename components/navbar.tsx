@@ -15,6 +15,8 @@ export const Navbar = ({ blok }: Blok) => {
     option: 0,
   });
 
+  const [mobileState, updateMobile] = useState<boolean>(false);
+  const [mobileNavOpt, updateMobileOption] = useState<number>(0);
   const wrapperRef = useRef(null);
 
   function useOutsideAlerter(ref: any) {
@@ -48,27 +50,89 @@ export const Navbar = ({ blok }: Blok) => {
   return (
     <section>
       <div className="bg-zinc-900 h-12 w-screen flex">
-        <button className="robotoBlack text-yellow-200 ml-20 mr-20 text-xl">
+        <button className="robotoBlack text-yellow-200 md:ml-20 ml-10 mr-12 md:mr-20 text-xl">
           <Link href={"/"}>golden shoe</Link>
         </button>
-        {blok.NavOptions.map((navOption: NavOptions, n: number) => {
-          return (
-            <button
-              className={`robotoMedium text-white mx-5 hover:text-green-300 duration-100 ease-in-out ${
-                menuContent.display && menuContent.option === n
-                  ? `text-green-300`
-                  : ``
-              }`}
-              onClick={(e) => {
-                toggleNav(e, n);
-              }}
-              key={navOption._uid}
-            >
-              {navOption.Title}
-            </button>
-          );
-        })}
+        <div className="md:flex hidden">
+          {blok.NavOptions.map((navOption: NavOptions, n: number) => {
+            return (
+              <button
+                className={`robotoMedium text-white mx-5 hover:text-green-300 duration-100 ease-in-out ${
+                  menuContent.display && menuContent.option === n
+                    ? `text-green-300`
+                    : ``
+                }`}
+                onClick={(e) => {
+                  toggleNav(e, n);
+                }}
+                key={navOption._uid}
+              >
+                {navOption.Title}
+              </button>
+            );
+          })}
+        </div>
+        <div className="md:hidden flex w-3/6 justify-end">
+          <button
+            onClick={() => {
+              updateMobile(!mobileState);
+            }}
+            className="mt-2"
+            aria-label="Open navigation"
+          >
+            {!mobileState ? (
+              <span className=" inline-block w-8 h-8">
+                <svg
+                  focusable="false"
+                  aria-hidden="true"
+                  fill="white"
+                  fill-rule="evenodd"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M0 3h24v2H0V3zm0 8h24v2H0v-2zm24 8H0v2h24v-2z"></path>
+                </svg>
+              </span>
+            ) : (
+              <span className="">
+                <svg
+                  focusable="false"
+                  aria-hidden="true"
+                  fill="white"
+                  fill-rule="evenodd"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M24 1.44L22.59.03 12.01 10.59 1.41 0 0 1.4 10.6 12 0 22.6 1.42 24l10.59-10.58 10.58 10.56 1.41-1.4L13.43 12 24 1.44z"></path>
+                </svg>
+              </span>
+            )}
+          </button>
+        </div>
       </div>
+      {!mobileState ? (
+        ""
+      ) : (
+        <div className="w-screen absolute z-50 h-full bg-white">
+          {blok.NavOptions.map((navOption: NavOptions, n: number) => {
+            return (
+              <button
+                className={`robotoMedium text-black py-5 border-b border-zinc-300 w-full duration-100 ease-in-out ${
+                  menuContent.display && menuContent.option === n
+                    ? `text-green-300`
+                    : ``
+                }`}
+                onClick={(e) => {
+                  toggleNav(e, n);
+                }}
+                key={navOption._uid}
+              >
+                {navOption.Title}
+              </button>
+            );
+          })}
+        </div>
+      )}
       <div
         className={`w-screen z-10 bg-gray-700 absolute duration-150 ease-in-out ${
           menuContent.display ? `opacity-100` : `opacity-0 hidden`
