@@ -26,6 +26,8 @@ export const Navbar = ({ blok }: Blok) => {
 
   //this decides if the parent or sub menu is shown
   const [navPar, updateNavPar] = useState<boolean>(true);
+
+  const [secExpand, updateSub] = useState<number | null>(null);
   const wrapperRef = useRef(null);
 
   function useOutsideAlerter(ref: any) {
@@ -62,6 +64,7 @@ export const Navbar = ({ blok }: Blok) => {
       selectMobile(false);
       updateMobileOption(null);
       updateNavPar(true);
+      updateSub(null);
     }
   };
 
@@ -166,37 +169,56 @@ export const Navbar = ({ blok }: Blok) => {
           </div>
            */}
       {mobileState && mobileSelected && !navPar ? (
-        <div>
+        <div className="absolute z-50 h-full bg-white w-full">
           <button
             className={`robotoMedium text-black py-5 border-b border-zinc-300 w-full duration-100 ease-in-out`}
             onClick={(e) => {
               selectMobile(true);
+              updateNavPar(true);
               updateMobileOption(null);
+              updateSub(null);
             }}
           >
             Back
           </button>
           {blok.NavOptions[menuContent.option].Options.map(
-            (option: NavDropdown) => {
-              return option.List.content[0].content.map(
-                (listOp: ListObj, k, number) => {
-                  // console.log(
-                  //   option.List.content[0].content[0].content[0].content[0].text
-                  // );
-                  if (k !== 0) {
-                    return (
-                      <div className="w-full border border-black">
-                        <button className="w-full border border-black bg-zinc-200 relative inline-flex text-left px-5 py-2">
-                          {"test"}
-                          <span className="w-5 h-4 inline-block ml-auto">
-                            {"a"}
-                          </span>
-                        </button>
-                        <div className="h-10 w-full"></div>
-                      </div>
-                    );
-                  }
-                }
+            (option: NavDropdown, j: number) => {
+              return (
+                <div className="w-full">
+                  <button
+                    onClick={() => updateSub(j)}
+                    className="robotoMedium text-black py-5 border-b border-zinc-300 w-full duration-100 ease-in-out"
+                  >
+                    {
+                      option.List.content[0].content[0].content[0].content[0]
+                        .text
+                    }
+                  </button>
+                  {option.List.content[0].content.map(
+                    (listOp: ListObj, k, number) => {
+                      // console.log(
+                      //   option.List.content[0].content[0].content[0].content[0].text
+                      // );
+                      if (k !== 0) {
+                        return (
+                          <div
+                            className={`bg-zinc-200 ${
+                              secExpand === j ? `h-auto` : `h-0 hidden`
+                            } w-full text-center border-b border-zinc-400 py-5`}
+                          >
+                            <Link
+                              href={`/category/${blok.NavOptions[
+                                menuContent.option
+                              ].Title.toLowerCase().replaceAll(" ", "-")}`}
+                            >
+                              {listOp.content[0].content[0].text}
+                            </Link>
+                          </div>
+                        );
+                      }
+                    }
+                  )}
+                </div>
               );
             }
           )}
