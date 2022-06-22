@@ -25,7 +25,6 @@ const CategoryPage = ({ blok }: any) => {
       })
       .then((data) => {
         updateProducts(data);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
