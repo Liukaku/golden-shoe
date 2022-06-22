@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SearchCol from "./subComponents/SearchCol";
+import SearchResults from "./subComponents/SearchResults";
 
 const CategoryPage = ({ blok }: any) => {
   const [products, updateProducts] = useState<any>(null);
@@ -37,9 +38,12 @@ const CategoryPage = ({ blok }: any) => {
     getData();
   }, []);
   return (
-    <div className="w-11/12 mx-auto flex">
-      <div className="w-2/12">
+    <div className="w-11/12 mx-auto md:flex block">
+      <div className="md:w-2/12 w-11/12 ml-5">
         <SearchCol products={products} />
+      </div>
+      <div className="md:w-10/12  w-full float-right ml:pl-5">
+        <SearchResults products={products} />
       </div>
     </div>
   );

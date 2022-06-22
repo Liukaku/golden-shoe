@@ -78,7 +78,7 @@ const SearchCol = ({ products }: any) => {
   };
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full md:h-screen h-auto mb-10 md:mb-0">
       {sections.map((section: string) => {
         return (
           <div className="w-full border border-black">
@@ -100,7 +100,8 @@ const SearchCol = ({ products }: any) => {
               <div className="h-auto my-3 w-full">
                 {options[section].map((opt: string) => {
                   return (
-                    <p className="w-8/12 mx-auto text-left">
+                    <p className="w-8/12 mx-auto text-left cursor-pointer my-3">
+                      {section === "Price" ? "£ " : ""}
                       {opt.toUpperCase()}
                     </p>
                   );
