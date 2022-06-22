@@ -71,7 +71,7 @@ export const Navbar = ({ blok }: Blok) => {
   return (
     <section>
       <div className="bg-zinc-900 h-12 w-screen flex">
-        <button className="robotoBlack text-yellow-200 md:ml-20 ml-10 mr-12 md:mr-20 text-xl">
+        <button className="robotoBlack text-yellow-200 md:ml-20 ml-5 mr-12 md:mr-20 text-xl">
           <Link href={"/"}>golden shoe</Link>
         </button>
         <div className="md:flex hidden">
@@ -120,7 +120,7 @@ export const Navbar = ({ blok }: Blok) => {
                 </svg>
               </span>
             ) : (
-              <span className="">
+              <span className="inline-block w-8 h-8">
                 <svg
                   focusable="false"
                   aria-hidden="true"
