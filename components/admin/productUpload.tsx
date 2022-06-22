@@ -294,7 +294,7 @@ const ProductUpload = () => {
       {!imageArr ? (
         ""
       ) : (
-        <div className="h-20 w-8/12 mx-auto mt-5 flex relative flex-wrap">
+        <div className="h-auto w-8/12 mx-auto mt-5 flex relative flex-wrap">
           <h1 className="w-full text-center">Image Preview</h1>
           {imageArr.map((imageURL: string) => {
             return (

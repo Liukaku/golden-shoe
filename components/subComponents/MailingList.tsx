@@ -8,12 +8,15 @@ const MailingList = (props: TitleStr) => {
   useEffect(() => {
     if (displayModal) {
       document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
     } else {
       document.body.style.overflowY = "visible";
+      document.body.style.height = "auto";
     }
 
     return () => {
       document.body.style.overflowY = "visible";
+      document.body.style.height = "auto";
     };
   }, [displayModal]);
 
@@ -30,8 +33,8 @@ const MailingList = (props: TitleStr) => {
       {!displayModal ? (
         ""
       ) : (
-        <div className="absolute inset-0 w-full h-full bg-black z-50 hiddenBg">
-          <div className="md:w-3/12 w-11/12 px-10 py-3 bg-blue-200 mx-auto mt-56">
+        <div className="absolute inset-0 w-full h-screen bg-black z-50 hiddenBg">
+          <div className="md:w-3/12 w-11/12 px-10 py-3 bg-blue-200 mx-auto md:mt-56 mt-20">
             <div className="md:w-11/12 w-full mx-auto justify-end text-right">
               <button
                 className="h-4 w-4 fixed"

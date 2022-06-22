@@ -29,7 +29,7 @@ const Login = ({ blok }: any) => {
   };
 
   return (
-    <div className="w-8/12 mx-auto text-center mt-32">
+    <div className="w-8/12 h-[49vh] mx-auto text-center mt-32">
       <form
         onSubmit={(e) => {
           formSubmit(e);
