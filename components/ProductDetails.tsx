@@ -17,7 +17,7 @@ const ProductDetails = ({ blok }: any) => {
       fetchURL = "http://localhost:5001/golden-shoe-aa08b/europe-west2/api";
     } else {
       fetchURL =
-        "https://europe-west2-golden-shoe-aa08b.cloudfunctions.net/api ";
+        "https://europe-west2-golden-shoe-aa08b.cloudfunctions.net/api";
     }
     fetch(`${fetchURL}/getProducts?id=${urlArr[urlArr.length - 1]}`, {
       method: "GET",
