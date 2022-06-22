@@ -7,13 +7,14 @@ const ProductDetails = ({ blok }: any) => {
   const [selected, updateSelected] = useState<number>(0);
   const [size, selectSize] = useState<number | null>(null);
   const [basketErr, updateErr] = useState<string>("");
+  const [basketSucc, updateSucc] = useState<string>("");
   const [theInterval, setTheInt] = useState<any>(null);
 
   const getData = () => {
     const urlArr = document.URL.split("/");
 
     console.log(urlArr[urlArr.length - 1]);
-    const productId = { productID: urlArr[urlArr.length - 1] };
+    const productId = urlArr[urlArr.length - 1];
     let fetchURL = "";
     if (urlArr.includes("localhost")) {
       fetchURL = "http://localhost:5001/golden-shoe-aa08b/europe-west2/api";
@@ -21,7 +22,7 @@ const ProductDetails = ({ blok }: any) => {
       fetchURL =
         "https://europe-west2-golden-shoe-aa08b.cloudfunctions.net/api";
     }
-    fetch(`${fetchURL}/getProducts?id=${urlArr[urlArr.length - 1]}`, {
+    fetch(`${fetchURL}/getProducts?id=${productId}`, {
       method: "GET",
     })
       .then((res) => {
@@ -50,6 +51,40 @@ const ProductDetails = ({ blok }: any) => {
   const addToCart = () => {
     if (!size) {
       updateErr("Please select a size");
+    } else {
+      const urlArr = document.URL.split("/");
+      const productId = urlArr[urlArr.length - 1];
+      let fetchURL;
+      console.log(urlArr);
+      if (urlArr.includes("localhost:3000")) {
+        fetchURL = "http://localhost:5001/golden-shoe-aa08b/europe-west2/api";
+      } else {
+        fetchURL =
+          "https://europe-west2-golden-shoe-aa08b.cloudfunctions.net/api";
+      }
+      fetch(`${fetchURL}/updateStock`, {
+        method: "POST",
+        body: JSON.stringify({
+          size: size,
+          prodId: productId,
+        }),
+      })
+        .then((res) => {
+          console.log("wew");
+          console.log(res);
+          console.log(product);
+          updateProduct({
+            ...product,
+            sizes: {
+              ...product.sizes,
+              [size]: parseInt(product.sizes[size]) - 1,
+            },
+          });
+          updateSucc("Added to basket");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -117,7 +152,7 @@ const ProductDetails = ({ blok }: any) => {
               <hr className="border bg-zinc-200 border-zinc-200 w-full mx-1" />
               <div className="w-11/12 flex lg:flex-start flex-wrap mx-auto">
                 {Object.keys(product.sizes).map((key: string, k: number) => {
-                  if (product.sizes[key] === 0) {
+                  if (product.sizes[key] <= 0) {
                     return (
                       <div
                         className={`text-center lg:w-20 md w-2/12 robotoBold mx-1 my-2 py-2 text-zinc-600 bg-zinc-100 outOfStock`}
@@ -131,8 +166,8 @@ const ProductDetails = ({ blok }: any) => {
                         onClick={() => {
                           selectSize(k);
                         }}
-                        className={`text-center lg:w-20 w-2/12 robotoBold mx-1 my-2 py-2 text-black cursor-pointer bg-zinc-200 hover:bg-zinc-600 hover:text-white ${
-                          size === k ? `text-white bg-zinc-600` : ""
+                        className={`text-center lg:w-20 w-2/12 robotoBold mx-1 my-2 py-2 cursor-pointer bg-zinc-200 hover:bg-zinc-600 hover:text-white ${
+                          size === k ? `text-white bg-zinc-600` : "text-black "
                         }`}
                       >
                         <p className="w-full px-5 ">{key}</p>
@@ -143,6 +178,11 @@ const ProductDetails = ({ blok }: any) => {
               </div>
               {basketErr ? (
                 <span className="text-red-500 w-full">{basketErr}</span>
+              ) : (
+                ""
+              )}
+              {basketSucc ? (
+                <span className="text-green-900 w-full">{basketSucc}</span>
               ) : (
                 ""
               )}
