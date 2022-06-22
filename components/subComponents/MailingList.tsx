@@ -23,7 +23,7 @@ const MailingList = (props: TitleStr) => {
         onClick={() => {
           toggleDisplay(!displayModal);
         }}
-        className="w-9/12 bg-black my-3 mx-auto text-white py-3 cursor-pointer"
+        className="w-9/12 bg-black mt-3 mb-3 mx-auto text-white py-3 cursor-pointer"
       >
         <h1 className="mx-auto w-full robotoBold text-center">{props.Title}</h1>
       </div>

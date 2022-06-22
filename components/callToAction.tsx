@@ -12,7 +12,7 @@ const CallToAction = ({ blok }: CallToActionBlok) => {
   const ignore = ["_editable", "_uid", "component"];
   console.log(blok);
   return (
-    <div className="w-screen">
+    <div className="w-screen mt-12">
       <MailingList Title={blok.MailingList} />
       <TripleBox blok={blok.TripleBox} />
       <Returns blok={blok.Returns} />

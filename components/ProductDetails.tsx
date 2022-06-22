@@ -12,14 +12,16 @@ const ProductDetails = ({ blok }: any) => {
     const urlArr = document.URL.split("/");
     console.log(urlArr[urlArr.length - 1]);
     const productId = { productID: urlArr[urlArr.length - 1] };
-    fetch(
-      `http://localhost:5001/golden-shoe-aa08b/europe-west2/api/getProducts?id=${
-        urlArr[urlArr.length - 1]
-      }`,
-      {
-        method: "GET",
-      }
-    )
+    let fetchURL = "";
+    if (urlArr.includes("localhost")) {
+      fetchURL = "http://localhost:5001/golden-shoe-aa08b/europe-west2/api";
+    } else {
+      fetchURL =
+        "https://europe-west2-golden-shoe-aa08b.cloudfunctions.net/api ";
+    }
+    fetch(`${fetchURL}/getProducts?id=${urlArr[urlArr.length - 1]}`, {
+      method: "GET",
+    })
       .then((res) => {
         return res.json();
       })

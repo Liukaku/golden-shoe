@@ -1,7 +1,6 @@
 import React from "react";
 
 const HelpBackground = ({ blok }: any) => {
-  console.log(blok);
   return (
     <div
       className="w-8/12 h-72 bg-cover mx-auto"

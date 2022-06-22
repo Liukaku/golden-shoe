@@ -12,7 +12,7 @@ interface ParaObj {
 
 export const TextBox = ({ blok }: any) => {
   return (
-    <div>
+    <div className="">
       {blok.TextBox.content.map((content: ParaBlok) => {
         console.log(content);
         return (

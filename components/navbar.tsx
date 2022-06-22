@@ -60,6 +60,13 @@ export const Navbar = ({ blok }: Blok) => {
 
   const toggleMobileNav = () => {
     updateMobile(!mobileState);
+    if (document.body.style.overflowY == "visible") {
+      document.body.style.overflowY = "hidden";
+      document.body.style.height = "100vh";
+    } else {
+      document.body.style.overflowY = "visible";
+      document.body.style.height = "auto";
+    }
     if (mobileSelected) {
       selectMobile(false);
       updateMobileOption(null);
@@ -69,12 +76,12 @@ export const Navbar = ({ blok }: Blok) => {
   };
 
   return (
-    <section>
-      <div className="bg-zinc-900 h-12 w-screen flex">
-        <button className="robotoBlack text-yellow-200 md:ml-20 ml-5 mr-12 md:mr-20 text-xl">
+    <section className="pb-4">
+      <div className="bg-zinc-900 h-12 w-screen flex fixed top-0 z-10 ">
+        <button className="robotoBlack text-yellow-200 md:ml-16 ml-5 mr-12 md:mr-10 text-xl">
           <Link href={"/"}>golden shoe</Link>
         </button>
-        <div className="md:flex hidden">
+        <div className="md:flex ml-10 hidden">
           {blok.NavOptions.map((navOption: NavOptions, n: number) => {
             return (
               <button
@@ -227,7 +234,7 @@ export const Navbar = ({ blok }: Blok) => {
         ""
       )}
       <div
-        className={`w-screen z-10 bg-zinc-300 absolute duration-150 ease-in-out ${
+        className={`w-screen z-10 bg-zinc-100 duration-150 ease-in-out fixed top-12 ${
           menuContent.display ? `opacity-100` : `opacity-0 hidden`
         }`}
         ref={wrapperRef}
@@ -236,7 +243,7 @@ export const Navbar = ({ blok }: Blok) => {
           {blok.NavOptions[menuContent.option].Options.map(
             (option: NavDropdown) => {
               return (
-                <ul className="text-black w-44 my-5 ">
+                <ul className="text-black w-44 my-5 border-r last:border-r-0 first:ml-0 ml-5">
                   {option.List.content[0].content.map(
                     (listOp: ListObj, k: number) => {
                       return (
