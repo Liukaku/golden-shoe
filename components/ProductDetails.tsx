@@ -56,7 +56,6 @@ const ProductDetails = ({ blok }: any) => {
       const urlArr = document.URL.split("/");
       const productId = urlArr[urlArr.length - 1];
       let fetchURL;
-      console.log(urlArr);
       if (urlArr.includes("localhost:3000")) {
         fetchURL = "http://localhost:5001/golden-shoe-aa08b/europe-west2/api";
       } else {
@@ -71,9 +70,6 @@ const ProductDetails = ({ blok }: any) => {
         }),
       })
         .then((res) => {
-          console.log("wew");
-          console.log(res);
-          console.log(product);
           updateProduct({
             ...product,
             sizes: {
