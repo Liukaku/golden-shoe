@@ -188,44 +188,46 @@ export const Navbar = ({ blok }: Blok) => {
           >
             Back
           </button>
-          {blok.NavOptions[menuContent.option].Options.map(
-            (option: NavDropdown, j: number) => {
-              return (
-                <div className="w-full">
-                  <button
-                    onClick={() => updateSub(j)}
-                    className="robotoMedium text-black py-5 border-b border-zinc-300 w-full duration-100 ease-in-out"
-                  >
-                    {
-                      option.List.content[0].content[0].content[0].content[0]
-                        .text
-                    }
-                  </button>
-                  {option.List.content[0].content.map(
-                    (listOp: ListObj, k, number) => {
-                      if (k !== 0) {
-                        return (
-                          <div
-                            className={`bg-zinc-200 ${
-                              secExpand === j ? `h-auto` : `h-0 hidden`
-                            } w-full text-center border-b border-zinc-400 py-5`}
-                          >
-                            <Link
-                              href={`/category/${blok.NavOptions[
-                                menuContent.option
-                              ].Title.toLowerCase().replaceAll(" ", "-")}`}
-                            >
-                              {listOp.content[0].content[0].text}
-                            </Link>
-                          </div>
-                        );
+          {mobileNavOpt !== null &&
+            blok.NavOptions[mobileNavOpt].Options.map(
+              (option: NavDropdown, j: number) => {
+                console.log(option);
+                return (
+                  <div className="w-full">
+                    <button
+                      onClick={() => updateSub(j)}
+                      className="robotoMedium text-black py-5 border-b border-zinc-300 w-full duration-100 ease-in-out"
+                    >
+                      {
+                        option.List.content[0].content[0].content[0].content[0]
+                          .text
                       }
-                    }
-                  )}
-                </div>
-              );
-            }
-          )}
+                    </button>
+                    {option.List.content[0].content.map(
+                      (listOp: ListObj, k, number) => {
+                        if (k !== 0) {
+                          return (
+                            <div
+                              className={`bg-zinc-200 ${
+                                secExpand === j ? `h-auto` : `h-0 hidden`
+                              } w-full text-center border-b border-zinc-400 py-5`}
+                            >
+                              <Link
+                                href={`/category/${blok.NavOptions[
+                                  mobileNavOpt
+                                ].Title.toLowerCase().replaceAll(" ", "-")}`}
+                              >
+                                {listOp.content[0].content[0].text}
+                              </Link>
+                            </div>
+                          );
+                        }
+                      }
+                    )}
+                  </div>
+                );
+              }
+            )}
         </div>
       ) : (
         ""

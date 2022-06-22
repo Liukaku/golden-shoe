@@ -12,6 +12,7 @@ import HelpBackground from "./HelpBackground";
 import TextBox from "./TextBox";
 import ProductDetails from "./ProductDetails";
 import ShopBrands from "./ShopBrands";
+import Footer from "./Footer";
 
 // resolve Storyblok components to Next.js components
 const Components = {
@@ -28,6 +29,7 @@ const Components = {
   TextBox: TextBox,
   ProductDetails: ProductDetails,
   ShopBrands: ShopBrands,
+  Footer: Footer,
 };
 
 const DynamicComponent = ({ blok }) => {
