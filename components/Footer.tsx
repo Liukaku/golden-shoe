@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = ({ blok }: any) => {
   return (
-    <div className="w-100% bg-black">
+    <div className="w-100% bg-zinc-900">
       <div className="w-10/12 flex mx-auto flex-wrap">
         {blok.Footer.map((column: any, n: number) => {
           return (
