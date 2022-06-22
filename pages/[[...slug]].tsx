@@ -58,7 +58,11 @@ export async function getStaticPaths() {
     const slug = data.links[linkKey].slug;
     let splittedSlug = slug.split("/");
     if (slug === "home") splittedSlug = false;
-    if (!slug.includes("admin")) {
+    if (
+      !splittedSlug.includes("admin") &&
+      !splittedSlug.includes("customer-services") &&
+      !splittedSlug.includes("category")
+    ) {
       paths.push({ params: { slug: splittedSlug } });
     }
   });
