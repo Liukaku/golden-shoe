@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -16,7 +17,7 @@ const ProductDetails = ({ blok }: any) => {
     console.log(urlArr[urlArr.length - 1]);
     const productId = urlArr[urlArr.length - 1];
     let fetchURL = "";
-    if (urlArr.includes("localhost")) {
+    if (urlArr.includes("localhost:3000")) {
       fetchURL = "http://localhost:5001/golden-shoe-aa08b/europe-west2/api";
     } else {
       fetchURL =
@@ -90,6 +91,11 @@ const ProductDetails = ({ blok }: any) => {
 
   return product ? (
     <div className="w-9/12  mt-16 h-full mx-auto pb-5">
+      <Head>
+        <title>{product.title}</title>
+        <meta name="description" content="The UKs favourite shoe retailer" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
       <h1 className="text-sm robotoMedium">
         <span className="underline text-blue-600">
           <Link href={"/"}>Home</Link>

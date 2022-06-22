@@ -41,7 +41,6 @@ export async function getStaticProps({ params, preview = false }: any) {
     sbParams.version = "draft";
     sbParams.cv = Date.now();
   }
-
   let { data } = await Storyblok.get(`cdn/stories/category/${slug}`, sbParams);
 
   return {
@@ -65,7 +64,8 @@ export async function getStaticPaths() {
     // get array for slug because of catch all
     const slug = data.links[linkKey].slug;
     let splittedSlug = slug.split("/");
-    if (splittedSlug.includes("catgory")) {
+
+    if (splittedSlug.includes("category")) {
       splittedSlug.shift();
       paths.push({ params: { slug: splittedSlug } });
     }

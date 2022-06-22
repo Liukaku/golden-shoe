@@ -34,11 +34,25 @@ const Login = ({ blok }: any) => {
         onSubmit={(e) => {
           formSubmit(e);
         }}
-        className="w-2/12 mx-auto"
+        className="w-4/12 mx-auto text-center bg-zinc-100 py-5 px-5"
       >
-        <input ref={emailRef} type="text" className="my-2"></input>
-        <input ref={passRef} type="password" className="my-2"></input>
-        <button type="submit" className="my-2">
+        <h1 className="text-3xl robotoBlack">Admin Login</h1>
+        <p className="w-full text-left">Email:</p>
+        <input
+          ref={emailRef}
+          type="text"
+          className="mt-2 w-full py-2 text-sm border border-black"
+        ></input>
+        <p className="w-full text-left mt-2">Password:</p>
+        <input
+          ref={passRef}
+          type="password"
+          className="mt-2 w-full py-2 text-sm border border-black"
+        ></input>
+        <button
+          type="submit"
+          className="my-2 bg-black w-full text-white robotoBold py-2"
+        >
           Submit
         </button>
       </form>

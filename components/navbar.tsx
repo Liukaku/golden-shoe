@@ -76,7 +76,7 @@ export const Navbar = ({ blok }: Blok) => {
   };
 
   return (
-    <section className="pb-4">
+    <section className="h-12">
       <div className="bg-zinc-900 h-12 w-screen flex fixed top-0 z-10 ">
         <button className="robotoBlack text-yellow-200 md:ml-16 ml-5 mr-12 md:mr-10 text-xl">
           <Link href={"/"}>golden shoe</Link>
@@ -144,7 +144,7 @@ export const Navbar = ({ blok }: Blok) => {
         </div>
       </div>
       {mobileState && navPar ? (
-        <div className="w-screen absolute z-50 h-full bg-white">
+        <div className="w-screen absolute mt-12 z-50 h-full bg-white">
           {blok.NavOptions.map((navOption: NavOptions, n: number) => {
             return (
               <button
@@ -176,7 +176,7 @@ export const Navbar = ({ blok }: Blok) => {
       )}
 
       {mobileState && mobileSelected && !navPar ? (
-        <div className="absolute z-50 h-full bg-white w-full">
+        <div className="absolute z-50 mt-12 h-full bg-white w-full">
           <button
             className={`robotoMedium text-black py-5 border-b border-zinc-300 w-full duration-100 ease-in-out`}
             onClick={(e) => {

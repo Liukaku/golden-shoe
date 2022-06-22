@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import DynamicComponent from "../../components/dynamic-component";
@@ -39,7 +40,16 @@ const index = () => {
   }, []);
 
   useEffect(() => {}, [story]);
-  return <div>{story ? <DynamicComponent blok={story.content} /> : ""}</div>;
+  return (
+    <div>
+      <Head>
+        <title>Mens Footwear</title>
+        <meta name="description" content="The UKs favourite shoe retailer" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+      {story ? <DynamicComponent blok={story.content} /> : ""}
+    </div>
+  );
 };
 
 export default index;

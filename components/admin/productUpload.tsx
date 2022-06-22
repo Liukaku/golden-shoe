@@ -52,7 +52,7 @@ const ProductUpload = () => {
   const priceRef = useRef<HTMLInputElement>(null);
   const [tagsRef, updateTags] = useState<string>("");
 
-  const productGender = ["Men", "Women", "Kids"];
+  const productGender = ["Men", "Women", "Kids", "Unisex"];
 
   const imagePreview = () => {
     let fileObj = [];
@@ -144,14 +144,16 @@ const ProductUpload = () => {
     updateGender(productGender.indexOf(target.id));
   };
   return (
-    <div>
-      <div className="w-3/12 mx-auto">
+    <div className="mt-5 ">
+      <div className="w-4/12 bg-zinc-100 px-20 py-5 mx-auto h-full ">
         <form
           onSubmit={(e) => {
             uploadMultipleFiles(e);
           }}
         >
-          <label htmlFor="productName">Product Name: </label>
+          <label className="robotoBold text-lg mt-4" htmlFor="productName">
+            Product Name:{" "}
+          </label>
           <input
             ref={titleRef}
             required
@@ -159,9 +161,11 @@ const ProductUpload = () => {
             name=""
             id="productName"
             placeholder="Product Name"
-            className="w-full border border-black"
+            className="mt-2 w-full py-2 text-sm border border-black mb-4"
           />
-          <label htmlFor="productPrice">Product Price: </label>
+          <label className="robotoBold text-lg mt-4" htmlFor="productPrice">
+            Product Price:{" "}
+          </label>
           <input
             ref={priceRef}
             required
@@ -169,9 +173,9 @@ const ProductUpload = () => {
             name=""
             id="productPrice"
             placeholder="Product Name"
-            className="w-full border border-black"
+            className="mt-2 w-full py-2 text-sm border border-black mb-4"
           />
-          <p>Product Category: </p>
+          <p className="robotoBold text-lg mt-4">Product Category: </p>
           <ul
             onChange={(e) => {
               updateGenderState(e);
@@ -198,7 +202,9 @@ const ProductUpload = () => {
               );
             })}
           </ul>
-          <label htmlFor="productBrand">Product Brand: </label>
+          <label className="robotoBold text-lg mt-4" htmlFor="productBrand">
+            Product Brand:{" "}
+          </label>
           <input
             required
             type="text"
@@ -206,9 +212,11 @@ const ProductUpload = () => {
             id="ProductTags"
             ref={brandRef}
             placeholder="Nike"
-            className="w-full border border-black"
+            className="mt-2 w-full py-2 text-sm border border-black mb-4"
           />
-          <label htmlFor="ProductTags">Product Tags: </label>
+          <label className="robotoBold text-lg mt-4" htmlFor="ProductTags">
+            Product Tags:{" "}
+          </label>
           <input
             required
             type="text"
@@ -219,7 +227,7 @@ const ProductUpload = () => {
               updateTags(e.target.value);
             }}
             placeholder="hightop, running shoes, "
-            className="w-full border border-black"
+            className="mt-2 w-full py-2 text-sm border border-black mb-4"
           />
           {tagsRef ? (
             <div className="w-full flex flex-wrap">
@@ -232,18 +240,24 @@ const ProductUpload = () => {
             ""
           )}
           <div className="flex flex-wrap">
-            <h1 className="w-full text-center">Product Size Quantities:</h1>
+            <h1 className="w-full text-center robotoBold text-lg mt-4">
+              Product Size Quantities:
+            </h1>
             {Object.keys(sizeState).map((size: string) => {
               return (
                 <div className="w-3/12 mx-2 my-2">
-                  <label htmlFor={`size${size}`}>Size {size}:</label>
+                  <label className="" htmlFor={`size${size}`}>
+                    Size {size}:
+                  </label>
                   <input
+                    required
                     type="number"
                     name=""
                     id={`size${size}`}
                     placeholder="0"
+                    min={`0`}
                     value={sizeState[size as unknown as keyof SizesObj]}
-                    className="w-6/12 border border-black"
+                    className="w-4/12 text-center border border-black"
                     onChange={(e) => {
                       updateSizes({ ...sizeState, [size]: e.target.value });
                     }}
@@ -270,7 +284,7 @@ const ProductUpload = () => {
           <div className="w-full text-center">
             <button
               type="submit"
-              className="mx-auto border border-black w-20 text-center"
+              className="my-2 bg-black w-full text-white robotoBold py-2"
             >
               Submit
             </button>
@@ -286,7 +300,7 @@ const ProductUpload = () => {
           {imageArr.map((imageURL: string) => {
             return (
               <div
-                className="w-3/12 h-32 bg-cover"
+                className="w-3/12 h-[20rem] bg-cover"
                 style={{ backgroundImage: `url(${imageURL})` }}
               />
             );

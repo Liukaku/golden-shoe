@@ -39,7 +39,7 @@ const ShopBrands = ({ blok }: any) => {
   };
 
   return (
-    <div className="block w-9/12 mx-auto flex-wrap justify-between h-auto">
+    <div className="block w-9/12 mx-auto flex-wrap lg:h-[210vh] overflow-hidden">
       {Object.keys(blok).map((key: string, n: number) => {
         if (!ignore.includes(key)) {
           const blokData = blok[key][0];
