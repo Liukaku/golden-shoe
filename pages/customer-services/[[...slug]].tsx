@@ -7,10 +7,7 @@ import CTX from "../../components/util/ctx";
 export const CustomerServices = ({ story, preview }: any) => {
   const [loginAuth, updateAuth] = useState({ accessToken: "" });
 
-  console.log(story);
-  useEffect(() => {
-    console.log(loginAuth);
-  }, [loginAuth]);
+  useEffect(() => {}, [loginAuth]);
 
   const enableBridge = true; // load the storyblok bridge everywhere
   // const enableBridge = preview; // enable bridge only in preview mode
