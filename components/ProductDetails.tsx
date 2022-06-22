@@ -133,7 +133,7 @@ const ProductDetails = ({ blok }: any) => {
                     onClick={() => {
                       updateSelected(n);
                     }}
-                    className={`h-28 w-2/12 bg-cover border-2 my-3 cursor-pointer border-zinc-100  ${
+                    className={`md:h-28 h-20 md:w-2/12 w-3/12 bg-cover border-2 my-3 cursor-pointer border-zinc-100  ${
                       selected === n ? `border-b-zinc-300` : ``
                     }`}
                     style={{ backgroundImage: `url(${url})` }}
@@ -157,7 +157,7 @@ const ProductDetails = ({ blok }: any) => {
                   if (product.sizes[key] <= 0) {
                     return (
                       <div
-                        className={`text-center lg:w-20 md w-2/12 robotoBold mx-1 my-2 py-2 text-zinc-600 bg-zinc-100 outOfStock`}
+                        className={`text-center lg:w-20 md w-1/4 robotoBold mx-1 my-2 py-2 text-zinc-600 bg-zinc-100 outOfStock`}
                       >
                         <p className="w-full px-5 ">{key}</p>
                       </div>
@@ -168,7 +168,7 @@ const ProductDetails = ({ blok }: any) => {
                         onClick={() => {
                           selectSize(k);
                         }}
-                        className={`text-center lg:w-20 w-2/12 robotoBold mx-1 my-2 py-2 cursor-pointer bg-zinc-200 hover:bg-zinc-600 hover:text-white ${
+                        className={`text-center lg:w-20 w-1/4 robotoBold mx-1 my-2 py-2 cursor-pointer bg-zinc-200 hover:bg-zinc-600 hover:text-white ${
                           size === k ? `text-white bg-zinc-600` : "text-black "
                         }`}
                       >

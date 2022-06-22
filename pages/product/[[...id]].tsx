@@ -5,7 +5,6 @@ import DynamicComponent from "../../components/dynamic-component";
 import Storyblok, { useStoryblok } from "../../lib/storyblok";
 
 const index = () => {
-  console.log(Storyblok);
   const [story, updateStory] = useState<any>(null);
   const router = useRouter();
   const { pid } = router.query;
@@ -27,7 +26,6 @@ const index = () => {
       }
 
       let { data } = await Storyblok.get(`cdn/stories/product/`, sbParams);
-      console.log(data.story);
       return data.story;
     };
     getData()

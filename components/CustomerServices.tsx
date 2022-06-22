@@ -11,7 +11,7 @@ export const CustomerServices = ({ blok }: any) => {
           if (!unNeeded.includes(key)) {
             return (
               <div className="md:w-4/12 w-11/12 d:mx-0 mx-auto bg-zinc-200 md:py-10 py-14 text-center hover:underline duration-150 ease-in-out">
-                <Link href={`/customer-services/returns`}>
+                <Link className="w-10" href={`/customer-services/returns`}>
                   {blok[key].toUpperCase()}
                 </Link>
               </div>

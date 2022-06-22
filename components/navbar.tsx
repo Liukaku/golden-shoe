@@ -78,7 +78,7 @@ export const Navbar = ({ blok }: Blok) => {
   return (
     <section className="h-12">
       <div className="bg-zinc-900 h-12 w-screen flex fixed top-0 z-10 ">
-        <button className="robotoBlack text-yellow-200 md:ml-16 ml-5 mr-8 md:mr-10 text-xl">
+        <button className="robotoBlack text-yellow-200 md:ml-16 ml-5 mr-8 md:mr-10 text-xl md:w-1/5">
           <Link href={"/"}>golden shoe</Link>
         </button>
         <div className="md:flex ml-10 hidden">
