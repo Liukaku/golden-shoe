@@ -10,7 +10,6 @@ interface CallToActionBlok {
 
 const CallToAction = ({ blok }: CallToActionBlok) => {
   const ignore = ["_editable", "_uid", "component"];
-  console.log(blok);
   return (
     <div className="w-screen ">
       <MailingList Title={blok.MailingList} />

@@ -11,10 +11,6 @@ interface HeroBlok {
 }
 
 const Feature = ({ blok }: FeatureBlok) => {
-  // <div
-  //   style={{ background: `url(${blok.HeroImage.filename})` }}
-  //   className={`bg-cover h-72 w-screen`}
-  // />
   return (
     <div className="w-screen md:h-96 h-36 relative my-5">
       <Image src={blok.HeroImage.filename} layout="fill" />

@@ -203,9 +203,6 @@ export const Navbar = ({ blok }: Blok) => {
                   </button>
                   {option.List.content[0].content.map(
                     (listOp: ListObj, k, number) => {
-                      // console.log(
-                      //   option.List.content[0].content[0].content[0].content[0].text
-                      // );
                       if (k !== 0) {
                         return (
                           <div

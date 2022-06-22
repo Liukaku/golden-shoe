@@ -2,7 +2,6 @@ import React from "react";
 import { CallToActionProps, TitleStr } from "../interfaces";
 
 const Returns = (props: CallToActionProps) => {
-  console.log(props);
   const styleArr = [``, `robotoBlack`, `underline`];
   return (
     <div className="bg-green-300">

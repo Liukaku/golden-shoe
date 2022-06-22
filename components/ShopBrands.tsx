@@ -43,7 +43,6 @@ const ShopBrands = ({ blok }: any) => {
       {Object.keys(blok).map((key: string, n: number) => {
         if (!ignore.includes(key)) {
           const blokData = blok[key][0];
-          console.log(blokData);
           return (
             <div
               className={`md:mb-20 mb-5 box-border float-left ${containerStylesFunc(

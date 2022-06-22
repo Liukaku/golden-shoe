@@ -13,7 +13,6 @@ const SearchResults = ({ products }: any) => {
         <div className=" w-full h-auto flex flex-wrap justify-between">
           {products.res.map((product: any, n: number) => {
             let key: string = Object.keys(product)[0];
-            console.log(product);
             return (
               <Link className="bg-white" href={`/product/${key}`}>
                 <div

@@ -21,11 +21,9 @@ const CategoryPage = ({ blok }: any) => {
       method: "GET",
     })
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((data) => {
-        console.log("beep");
         updateProducts(data);
         console.log(data);
       })

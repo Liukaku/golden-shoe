@@ -127,7 +127,6 @@ const ProductUpload = () => {
       .then((res) => {
         createProducts(res.message)
           .then((createRes) => {
-            console.log(createRes);
             updateStatus("Uploading Complete");
           })
           .catch((err) => {

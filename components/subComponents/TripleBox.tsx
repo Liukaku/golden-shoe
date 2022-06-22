@@ -2,7 +2,6 @@ import React from "react";
 import { CallToActionProps, TitleStr } from "../interfaces";
 
 const TripleBox = (props: CallToActionProps) => {
-  console.log(props);
   return (
     <div className="md:flex block justify-between md:w-10/12 w-screen mx-auto">
       {props.blok.map((box: TitleStr, n: number) => {

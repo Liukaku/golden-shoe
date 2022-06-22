@@ -14,7 +14,6 @@ export const TextBox = ({ blok }: any) => {
   return (
     <div className="">
       {blok.TextBox.content.map((content: ParaBlok) => {
-        console.log(content);
         return (
           <div
             className={`w-8/12 text-md mx-auto mt-5 ${
