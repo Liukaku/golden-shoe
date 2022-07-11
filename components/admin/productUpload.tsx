@@ -86,7 +86,7 @@ const ProductUpload = () => {
           console.log(fileArray);
 
           const postData = await fetch(
-            "http://localhost:5001/golden-shoe-aa08b/europe-west2/api/newproduct",
+            "https://europe-west2-golden-shoe-aa08b.cloudfunctions.net/api/newproduct",
             {
               method: "POST",
               body: formData,
@@ -113,7 +113,7 @@ const ProductUpload = () => {
           dateCreated: new Date().getTime(),
         };
         const postData = await fetch(
-          "http://localhost:5001/golden-shoe-aa08b/europe-west2/api/createproduct",
+          "https://europe-west2-golden-shoe-aa08b.cloudfunctions.net/api/createproduct",
           {
             method: "POST",
             body: JSON.stringify(products),
